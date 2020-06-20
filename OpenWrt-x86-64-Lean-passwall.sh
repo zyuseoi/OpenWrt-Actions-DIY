@@ -190,6 +190,7 @@ CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-zerotier=y #zerotier内网穿透
 # CONFIG_PACKAGE_luci-app-haproxy-tcp is not set #Haproxy负载均衡
 # CONFIG_PACKAGE_luci-app-diskman is not set #磁盘管理磁盘信息
+CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
 # CONFIG_PACKAGE_luci-app-transmission is not set #TR离线下载
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set #QB离线下载
 # CONFIG_PACKAGE_luci-app-amule is not set #电驴离线下载
@@ -221,8 +222,8 @@ EOF
 # LuCI主题:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-atmaterial=y
-CONFIG_PACKAGE_luci-theme-argon_new=y
-CONFIG_PACKAGE_luci-theme-netgear=y
+# CONFIG_PACKAGE_luci-theme-argon_new is not set
+# CONFIG_PACKAGE_luci-theme-netgear is not set
 EOF
 
 # 常用软件包:

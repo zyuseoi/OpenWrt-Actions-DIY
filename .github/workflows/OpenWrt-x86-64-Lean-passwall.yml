@@ -2,9 +2,9 @@
 name: OpenWrt-x86-64-Lean-passwall
 
 on:
-# 定时触发(每天早4点)
+# 定时触发(每天早8点)
   schedule:
-    - cron: 0 20 * * 1
+    - cron: 0 0 * * *
 
 # release触发
   release:
