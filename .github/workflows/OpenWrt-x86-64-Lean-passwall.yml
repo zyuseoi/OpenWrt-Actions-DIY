@@ -3,16 +3,16 @@ name: OpenWrt-x86-64-Lean-passwall
 
 on:
 # 定时触发(每天早8点)
-  schedule:
-    - cron: 0 0 * * *
+#   schedule:
+#     - cron: 0 0 * * *
 
 # release触发
-  release:
-    types: [published]
+#   release:
+#     types: [published]
 
 # 点赞触发
-#  watch:
-#    types: [started]
+  watch:
+    types: [started]
 
 # 编辑触发
 #  push:
@@ -76,9 +76,9 @@ jobs:
         ../$DIY_SH
         make defconfig
 
-    - name: 开启SSH远程连接
-      uses: P3TERX/debugger-action@master
-      if: env.SSH_ACTIONS == 'true'
+#     - name: 开启SSH远程连接
+#       uses: P3TERX/debugger-action@master
+#       if: env.SSH_ACTIONS == 'true'
 
     - name: 下载软件包
       id: package
