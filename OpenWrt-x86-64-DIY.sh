@@ -16,7 +16,6 @@ cat feeds.conf.default
 
 # 添加第三方软件包
 git clone https://github.com/kenzok8/openwrt-packages package/openwrt-packages
-git clone https://github.com/jerrykuku/luci-theme-argon -b 18.06 package/lean/luci-theme-argon
 
 # 再次更新并安装源
 ./scripts/feeds clean
