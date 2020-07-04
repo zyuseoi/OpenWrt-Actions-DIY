@@ -1,5 +1,5 @@
 
-name: OpenWrt-x86-64-Lean-passwall
+name: OpenWrt-x86-64-DIY
 
 on:
 # 定时触发(每天早8点)
@@ -30,7 +30,7 @@ on:
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
   REPO_BRANCH: master
-  DIY_SH: OpenWrt-x86-64-Lean-passwall.sh
+  DIY_SH: OpenWrt-x86-64-DIY.sh
   SSH_ACTIONS: false
   UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
@@ -95,12 +95,12 @@ jobs:
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
 
-    - name: 上传BIN目录
-      uses: actions/upload-artifact@master
-      if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
-      with:
-        name: OpenWrt_bin_Lean_passwall_${{ env.FILENAME }}
-        path: openwrt/bin
+#     - name: 上传BIN目录
+#       uses: actions/upload-artifact@master
+#       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
+#       with:
+#         name: OpenWrt_bin_Lean_passwall_${{ env.FILENAME }}
+#         path: openwrt/bin
 
     - name: 整理文件
       id: organize
