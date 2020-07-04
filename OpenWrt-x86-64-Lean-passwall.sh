@@ -25,8 +25,8 @@ git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverc
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
 # 替换更新haproxy默认版本
-rm -rf feeds/packages/net/haproxy && svn co https://github.com/kang-mk/openwrt-app-package/trunk/haproxy feeds/packages/net/haproxy
-rm -rf package/lean/luci-app-haproxy-tcp && svn co https://github.com/kang-mk/openwrt-app-package/trunk/luci-app-haproxy-tcp package/lean/luci-app-haproxy-tcp
+rm -rf feeds/packages/net/haproxy && svn co https://github.com/db-one/openwrt-app-package/trunk/haproxy feeds/packages/net/haproxy
+rm -rf package/lean/luci-app-haproxy-tcp && svn co https://github.com/db-one/openwrt-app-package/trunk/luci-app-haproxy-tcp package/lean/luci-app-haproxy-tcp
 
 # 自定义定制选项
 sed -i 's#192.168.1.1#10.10.10.253#g' package/base-files/files/bin/config_generate #定制默认IP
