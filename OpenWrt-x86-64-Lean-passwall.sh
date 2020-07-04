@@ -17,23 +17,19 @@ cat feeds.conf.default
 # 添加第三方软件包
 git clone https://github.com/kenzok8/openwrt-packages package/openwrt-packages
 git clone https://github.com/kenzok8/small package/small
-git clone https://github.com/destan19/OpenAppFilter package/OpenAppFilter
-git clone https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
 
 # 再次更新并安装源
 ./scripts/feeds clean
 ./scripts/feeds update -a && ./scripts/feeds install -a
 
 # 替换更新haproxy默认版本
-rm -rf feeds/packages/net/haproxy && svn co https://github.com/db-one/openwrt-app-package/trunk/haproxy feeds/packages/net/haproxy
-rm -rf package/lean/luci-app-haproxy-tcp && svn co https://github.com/db-one/openwrt-app-package/trunk/luci-app-haproxy-tcp package/lean/luci-app-haproxy-tcp
+# rm -rf feeds/packages/net/haproxy && svn co https://github.com/db-one/openwrt-app-package/trunk/haproxy feeds/packages/net/haproxy
+# rm -rf package/lean/luci-app-haproxy-tcp && svn co https://github.com/db-one/openwrt-app-package/trunk/luci-app-haproxy-tcp package/lean/luci-app-haproxy-tcp
 
 # 自定义定制选项
-sed -i 's#192.168.1.1#10.10.10.253#g' package/base-files/files/bin/config_generate #定制默认IP
+sed -i 's#192.168.1.1#192.168.2.101#g' package/base-files/files/bin/config_generate #定制默认IP
 sed -i 's@.*CYXluq4wUazHjmCDBCqXF*@#&@g' package/lean/default-settings/files/zzz-default-settings #取消系统默认密码
 # sed -i 's/procd_set_param command $PROG -C $CONFIGFILE -k -x \/var\/run\/dnsmasq\/dnsmasq.\"${cfg}\".pid/procd_set_param command $PROG -C $CONFIGFILE -k --dhcp-sequential-ip -x \/var\/run\/dnsmasq\/dnsmasq.\"${cfg}\".pid/g' package/network/services/dnsmasq/files/dnsmasq.init #DHCP顺序分配IP
-sed -i 's#option commit_interval 24h#option commit_interval 10m#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计写入为10分钟
-sed -i 's#option database_directory /var/lib/nlbwmon#option database_directory /etc/config/nlbwmon_data#g' feeds/packages/net/nlbwmon/files/nlbwmon.config #修改流量统计数据存放默认位置
 
 #创建自定义配置文件 - OpenWrt-x86-64
 
@@ -123,11 +119,11 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
+# CONFIG_PACKAGE_luci-app-oaf is not set #应用过滤
 CONFIG_PACKAGE_luci-app-openclash=y #OpenClash
-CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-CONFIG_PACKAGE_luci-app-eqos=y #IP限速
-# CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardhome
+# CONFIG_PACKAGE_luci-app-serverchan is not set #微信推送
+# CONFIG_PACKAGE_luci-app-eqos is not set #IP限速
+# CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardhome
 EOF
 
 # ShadowsocksR插件:
@@ -139,63 +135,66 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
 EOF
 
 # Passwall插件:
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-passwall=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2ray=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks=y
-CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd=y
-CONFIG_PACKAGE_kcptun-client=y
-CONFIG_PACKAGE_chinadns-ng=y
-CONFIG_PACKAGE_haproxy=y
-CONFIG_PACKAGE_v2ray=y
-CONFIG_PACKAGE_v2ray-plugin=y
-CONFIG_PACKAGE_simple-obfs=y
-CONFIG_PACKAGE_trojan=y
-CONFIG_PACKAGE_brook=y
-CONFIG_PACKAGE_ipt2socks=y
-CONFIG_PACKAGE_shadowsocks-libev-config=y
-CONFIG_PACKAGE_shadowsocks-libev-ss-local=y
-CONFIG_PACKAGE_shadowsocks-libev-ss-redir=y
-CONFIG_PACKAGE_shadowsocksr-libev-alt=y
-CONFIG_PACKAGE_shadowsocksr-libev-ssr-local=y
-CONFIG_PACKAGE_pdnsd-alt=y
-CONFIG_PACKAGE_dns2socks=y
-EOF
+# cat >> .config <<EOF
+# CONFIG_PACKAGE_luci-app-passwall is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ipt2socks is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Shadowsocks is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ShadowsocksR is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_ChinaDNS_NG is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_V2rayis not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_v2ray-plugin is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_simple-obfs is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Trojan is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_Brook is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_kcptun is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_haproxy is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_dns2socks is not set
+# CONFIG_PACKAGE_luci-app-passwall_INCLUDE_pdnsd is not set
+# CONFIG_PACKAGE_kcptun-client is not set
+# CONFIG_PACKAGE_chinadns-ng is not set
+# CONFIG_PACKAGE_haproxy is not set
+# CONFIG_PACKAGE_v2ray is not set
+# CONFIG_PACKAGE_v2ray-plugin is not set
+# CONFIG_PACKAGE_simple-obfs is not set
+# CONFIG_PACKAGE_trojan is not set
+# CONFIG_PACKAGE_brook is not set
+# CONFIG_PACKAGE_ipt2socks is not set
+# CONFIG_PACKAGE_shadowsocks-libev-config is not set
+# CONFIG_PACKAGE_shadowsocks-libev-ss-local is not set
+# CONFIG_PACKAGE_shadowsocks-libev-ss-redir is not set
+# CONFIG_PACKAGE_shadowsocksr-libev-alt is not set
+# CONFIG_PACKAGE_shadowsocksr-libev-ssr-local is not set
+# CONFIG_PACKAGE_pdnsd-alt is not set
+# CONFIG_PACKAGE_dns2socks is not set
+# EOF
 
 # 常用LuCI插件:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
-CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
+# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
-CONFIG_DEFAULT_luci-app-vlmcsd=y #KMS激活服务器
-CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
+CONFIG_PACKAGE_luci-app-arpbind=y #ARP绑定
+CONFIG_PACKAGE_luci-app-ramfree=y #清理内存
+CONFIG_PACKAGE_luci-app-firewall=y #添加防火墙
+# CONFIG_DEFAULT_luci-app-vlmcsd is not set #KMS激活服务器
+# CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
-CONFIG_PACKAGE_luci-app-accesscontrol=y #上网时间控制
-CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
-CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
+# CONFIG_PACKAGE_luci-app-accesscontrol is not set #上网时间控制
+# CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
+# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
+# CONFIG_PACKAGE_luci-app-flowoffload is not set #Turbo ACC 网络加速
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
-CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
-CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
-CONFIG_PACKAGE_luci-app-zerotier=y #zerotier内网穿透
+# CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
+# CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
+# CONFIG_PACKAGE_luci-app-zerotier is not set #zerotier内网穿透
 # CONFIG_PACKAGE_luci-app-haproxy-tcp is not set #Haproxy负载均衡
 # CONFIG_PACKAGE_luci-app-diskman is not set #磁盘管理磁盘信息
-CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
+# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
 # CONFIG_PACKAGE_luci-app-transmission is not set #TR离线下载
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set #QB离线下载
 # CONFIG_PACKAGE_luci-app-amule is not set #电驴离线下载
-CONFIG_PACKAGE_luci-app-xlnetacc=y #迅雷快鸟
+# CONFIG_PACKAGE_luci-app-xlnetacc is not set #迅雷快鸟
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
 # CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
 # CONFIG_PACKAGE_luci-app-unblockmusic is not set #解锁网易云灰色歌曲
@@ -223,7 +222,7 @@ EOF
 # LuCI主题:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-atmaterial=y
-# CONFIG_PACKAGE_luci-theme-argon_new is not set
+CONFIG_PACKAGE_luci-theme-argon_new=y
 # CONFIG_PACKAGE_luci-theme-netgear is not set
 EOF
 
