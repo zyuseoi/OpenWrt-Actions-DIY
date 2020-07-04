@@ -16,7 +16,6 @@ cat feeds.conf.default
 
 # 添加第三方软件包
 git clone https://github.com/kenzok8/openwrt-packages package/openwrt-packages
-git clone https://github.com/kenzok8/small package/small
 
 # 再次更新并安装源
 ./scripts/feeds clean
@@ -119,8 +118,8 @@ EOF
 
 # 第三方插件选择:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-oaf is not set #应用过滤
 CONFIG_PACKAGE_luci-app-openclash=y #OpenClash
+# CONFIG_PACKAGE_luci-app-oaf is not set #应用过滤
 # CONFIG_PACKAGE_luci-app-serverchan is not set #微信推送
 # CONFIG_PACKAGE_luci-app-eqos is not set #IP限速
 # CONFIG_PACKAGE_luci-app-adguardhome is not set #ADguardhome
@@ -171,15 +170,15 @@ EOF
 # 常用LuCI插件:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告
-# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
+CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
+CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 CONFIG_PACKAGE_luci-app-arpbind=y #ARP绑定
 CONFIG_PACKAGE_luci-app-ramfree=y #清理内存
 CONFIG_PACKAGE_luci-app-firewall=y #添加防火墙
+# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set #KMS激活服务器
 # CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
-CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-accesscontrol is not set #上网时间控制
 # CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
 # CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
@@ -221,8 +220,8 @@ EOF
 
 # LuCI主题:
 cat >> .config <<EOF
-CONFIG_PACKAGE_luci-theme-atmaterial=y
-CONFIG_PACKAGE_luci-theme-argon_new=y
+# CONFIG_PACKAGE_luci-theme-atmaterial is not set
+# CONFIG_PACKAGE_luci-theme-argon_new is not set
 # CONFIG_PACKAGE_luci-theme-netgear is not set
 EOF
 
@@ -231,10 +230,10 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_htop=y
 CONFIG_PACKAGE_nano=y
+CONFIG_PACKAGE_wget=y
 # CONFIG_PACKAGE_screen=y
 # CONFIG_PACKAGE_tree=y
 # CONFIG_PACKAGE_vim-fuller=y
-CONFIG_PACKAGE_wget=y
 EOF
 
 # 其他软件包:
