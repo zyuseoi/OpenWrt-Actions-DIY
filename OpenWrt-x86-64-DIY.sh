@@ -176,6 +176,7 @@ CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
 CONFIG_PACKAGE_luci-app-arpbind=y #ARP绑定
 CONFIG_PACKAGE_luci-app-ramfree=y #清理内存
 CONFIG_PACKAGE_luci-app-firewall=y #添加防火墙
+CONFIG_PACKAGE_luci-app-smartdns=y #smartdnsDNS服务
 # CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
 # CONFIG_PACKAGE_luci-app-vlmcsd is not set #KMS激活服务器
 # CONFIG_PACKAGE_luci-app-filetransfer is not set #系统-文件传输
@@ -189,7 +190,6 @@ CONFIG_PACKAGE_luci-app-firewall=y #添加防火墙
 # CONFIG_PACKAGE_luci-app-zerotier is not set #zerotier内网穿透
 # CONFIG_PACKAGE_luci-app-haproxy-tcp is not set #Haproxy负载均衡
 # CONFIG_PACKAGE_luci-app-diskman is not set #磁盘管理磁盘信息
-# CONFIG_PACKAGE_luci-app-smartdns is not set #smartdnsDNS服务
 # CONFIG_PACKAGE_luci-app-transmission is not set #TR离线下载
 # CONFIG_PACKAGE_luci-app-qbittorrent is not set #QB离线下载
 # CONFIG_PACKAGE_luci-app-amule is not set #电驴离线下载
