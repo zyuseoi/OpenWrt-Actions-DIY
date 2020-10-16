@@ -4,7 +4,7 @@ name: OpenWrt-x86-64-DIY
 on:
 # 定时触发(每周五12点)
   schedule:
-    - cron: 0 12 * * 5
+    - cron: 0 8 * * 5
 
 # release触发
 #   release:
